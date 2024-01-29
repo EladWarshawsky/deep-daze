@@ -7,7 +7,7 @@ from pathlib import Path
 
 import torch
 import torch.nn.functional as F
-from siren_pytorch import SirenNet, SirenWrapper
+from siren_pytorch import SirenNet, SirenWrapper,Modulator
 from torch import nn
 from torch.cuda.amp import GradScaler, autocast
 from torch_optimizer import DiffGrad, AdamP
