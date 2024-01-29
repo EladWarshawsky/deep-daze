@@ -7,7 +7,7 @@ from pathlib import Path
 
 import torch
 import torch.nn.functional as F
-from siren_pytorch import SirenNet, SirenWrapper,Modulator
+from siren_pytorch import SirenNet, SirenWrapper
 from torch import nn
 from torch.cuda.amp import GradScaler, autocast
 from torch_optimizer import DiffGrad, AdamP
@@ -113,6 +113,31 @@ def create_text_path(context_length, text=None, img=None, encoding=None, separat
     else:
         input_name = "your_encoding"
     return input_name
+
+class Modulator(nn.Module):
+    def __init__(self, dim_in, dim_hidden, num_layers):
+        super().__init__()
+        self.layers = nn.ModuleList([])
+
+        for ind in range(num_layers):
+            is_first = ind == 0
+            dim = dim_in if is_first else (dim_hidden + dim_in)
+
+            self.layers.append(nn.Sequential(
+                nn.Linear(dim, dim_hidden),
+                nn.ReLU()
+            ))
+
+    def forward(self, z):
+        x = z
+        hiddens = []
+
+        for layer in self.layers:
+            x = layer(x)
+            hiddens.append(x)
+            x = torch.cat((x, z))
+
+        return tuple(hiddens)
 
 
 class ComplexGaborLayer2D(nn.Module):
