@@ -226,7 +226,7 @@ class INR(nn.Module):
                                     hidden_features, 
                                     omega0=first_omega_0,
                                     sigma0=scale,
-                                    is_first=True,
+                                    is_first=False,
                                     trainable=False))
 
         for i in range(hidden_layers):
