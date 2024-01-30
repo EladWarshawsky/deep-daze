@@ -191,8 +191,8 @@ class ComplexGaborLayer2D(nn.Module):
         
         scale_x = lin
         scale_y = self.scale_orth(input)
-        
-        freq_term = torch.exp(1j*self.omega_0*lin)
+        # remove 1j* term which was complex number messing up autograd
+        freq_term = torch.exp(self.omega_0*lin)
         
         arg = scale_x.abs().square() + scale_y.abs().square()
         gauss_term = torch.exp(-self.scale_0*self.scale_0*arg)
