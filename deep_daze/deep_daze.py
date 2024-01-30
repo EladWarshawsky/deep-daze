@@ -214,7 +214,7 @@ class INR(nn.Module):
         # Since complex numbers are two real numbers, reduce the number of 
         # hidden parameters by 4
         hidden_features = int(hidden_features/2)
-        dtype = torch.cfloat
+        dtype = torch.float
         self.complex = True
         self.wavelet = 'gabor'    
         
