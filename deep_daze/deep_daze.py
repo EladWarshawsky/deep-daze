@@ -408,7 +408,7 @@ class Imagine(nn.Module):
             save_date_time=False,
             start_image_path=None,
             start_image_train_iters=10,
-            start_image_lr=3e-4,
+            start_image_lr=2e-2,
             theta_initial=None,
             theta_hidden=None,
             model_name="ViT-B/32",
