@@ -157,7 +157,7 @@ class ComplexGaborLayer2D(nn.Module):
     '''
     
     def __init__(self, in_features, out_features, bias=True,
-                 is_first=False, omega0=10.0, sigma0=10.0,
+                 is_first=True, omega0=10.0, sigma0=10.0,
                  trainable=True):
         super().__init__()
         self.omega_0 = omega0
@@ -226,7 +226,7 @@ class INR(nn.Module):
                                     hidden_features, 
                                     omega0=first_omega_0,
                                     sigma0=scale,
-                                    is_first=False,
+                                    is_first=True,
                                     trainable=False))
 
         for i in range(hidden_layers):
