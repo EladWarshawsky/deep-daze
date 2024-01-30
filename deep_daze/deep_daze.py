@@ -245,8 +245,8 @@ class INR(nn.Module):
     def forward(self, coords):
         output = self.net(coords)
         
-        if self.wavelet == 'gabor':
-            return output.real
+        # if self.wavelet == 'gabor':
+        #     return output.real
          
         return output
 
