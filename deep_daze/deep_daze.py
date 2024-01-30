@@ -166,10 +166,10 @@ class ComplexGaborLayer2D(nn.Module):
         
         self.in_features = in_features
         
-        if self.is_first:
-            dtype = torch.float
-        else:
-            dtype = torch.cfloat
+        # if self.is_first:
+        dtype = torch.float
+        # else:
+            # dtype = torch.cfloat
             
         # Set trainable parameters if they are to be simultaneously optimized
         self.omega_0 = nn.Parameter(self.omega_0*torch.ones(1), trainable)
